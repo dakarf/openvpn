@@ -4100,6 +4100,8 @@ Set
 .B alg=none
 to disable authentication.
 
+Must be defined similarly in BOTH client and server config.
+
 For more information on HMAC see
 .I http://www.cs.ucsd.edu/users/mihir/papers/hmac.html
 .\"*********************************************************
@@ -4130,6 +4132,7 @@ and
 .B \-\-ncp-disable
 for more on NCP.
 
+Must be defined similarly in BOTH client and server config.
 .\"*********************************************************
 .TP
 .B \-\-ncp\-ciphers cipher_list
@@ -4610,17 +4613,21 @@ above).
 .\"*********************************************************
 .TP
 .B \-\-tls\-version\-min version ['or\-highest']
-Sets the minimum
-TLS version we will accept from the peer (default is "1.0").
-Examples for version
-include "1.0", "1.1", or "1.2".  If 'or-highest' is specified
-and version is not recognized, we will only accept the highest TLS
+Sets the minimum TLS version we will accept from the peer (default is "1.0").
+Examples for version include "1.0", "1.1", or "1.2".  If 'or-highest' is
+specified and version is not recognized, we will only accept the highest TLS
 version supported by the local SSL implementation.
+Can be defined by the client or the server, or both. A mismatch where
+tls-version-min is higher than tls-version-max at the other end could cause
+problems.
 .\"*********************************************************
 .TP
 .B \-\-tls\-version\-max version
 Set the maximum TLS version we will use (default is the highest version
 supported).  Examples for version include "1.0", "1.1", or "1.2".
+Can be defined by the client or the server, or both. A mismatch where
+tls-version-max is lower than tls-version-min at the other end could cause
+problems.
 .\"*********************************************************
 .TP
 .B \-\-pkcs12 file
